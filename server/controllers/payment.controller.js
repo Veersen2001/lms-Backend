@@ -3,7 +3,7 @@ import crypto from 'crypto';
 import asyncHandler from '../middlewares/asyncHandler.middleware.js';
 import User from '../models/user.model.js';
 import AppError from '../utils/appError.js';
-import { razorpay } from '../server.js';
+import { razorpay } from '../index.js';
 import Payment from '../models/Payment.model.js';
 
 /**
