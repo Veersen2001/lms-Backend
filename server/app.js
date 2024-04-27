@@ -15,7 +15,7 @@ app.use(express.urlencoded({ extended: true }));
 // Third-Party
 app.use(
   cors({
-    origin:['https://lms-frontend-qmln.vercel.app/'], //5000
+    origin:'http://localhost:5173', //5000
     credentials: true,
   })
 )
