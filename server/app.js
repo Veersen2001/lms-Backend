@@ -15,7 +15,7 @@ app.use(express.urlencoded({ extended: true }));
 // Third-Party
 app.use(
   cors({
-    origin:'https://lms-frontend-xi-swart.vercel.app', //5000
+    origin:'https://lms-frontend-qmln.vercel.app', //5000
     credentials: true,
   })
 )
