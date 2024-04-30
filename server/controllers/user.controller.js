@@ -9,8 +9,11 @@ import User from '../models/user.model.js';
 import sendEmail from '../utils/sendEmail.js';
 
 const cookieOptions = {
-  secure: process.env.NODE_ENV === 'production' ? true : false,
+  _secure: process.env.NODE_ENV === 'production' ? true : false,
   maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
+  httpOnly: true,
+  sameSite:process.env.NODE_ENV === "development" ? true : "none",
+    
   
 };
 
