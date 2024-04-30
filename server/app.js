@@ -2,7 +2,7 @@ import cookieParser from 'cookie-parser';
 import express from 'express';
 import { config } from 'dotenv';
 import cors from 'cors';
-import morgan from 'morgan';
+import morgan, { token } from 'morgan';
 import errorMiddleware from './middlewares/error.middleware.js';
 config();
 const app = express();
@@ -20,13 +20,7 @@ app.use(
 )
 app.use(morgan('dev'));
 app.use(cookieParser());
-app.get('/set-cookie', (req, res) => {
-  res.cookie('', 'cookieValue', {
-    sameSite: 'None',
-    secure: true, // Ensure the cookie is only sent over HTTPS
-    // Other cookie options like maxAge, domain, etc. can be set here
-  }).send('Cookie set successfully');
-});
+
 
 // Server Status Check Route
 app.get('/ping', (_req, res) => {
@@ -38,6 +32,7 @@ import userRoutes from './routes/user.routes.js';
 import courseRoutes from './routes/course.routes.js';
 import paymentRoutes from './routes/payment.routes.js';
 import miscRoutes from './routes/miscellaneous.routes.js';
+import tokens from 'razorpay/dist/types/tokens.js';
 
 app.use('/api/v1/user', userRoutes);
 app.use('/api/v1/courses', courseRoutes);
