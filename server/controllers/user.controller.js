@@ -14,7 +14,7 @@ const cookieOptions = {
    httpOnly: true,
         sameSite: "None",
         secure: true,
-        domain: "https://lms-frontend-qmln.vercel.app",
+        domain: "lms-backend-0t1r.onrender.com",
 
     
   

@@ -20,6 +20,13 @@ app.use(
 )
 app.use(morgan('dev'));
 app.use(cookieParser());
+// app.get('/set-cookie', (req, res) => {
+//   res.cookie('cookieName', 'cookieValue', {
+//     sameSite: 'None',
+//     secure: true, // Ensure the cookie is only sent over HTTPS
+//     // Other cookie options like maxAge, domain, etc. can be set here
+//   }).send('Cookie set successfully');
+// });
 
 // Server Status Check Route
 app.get('/ping', (_req, res) => {
