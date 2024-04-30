@@ -12,7 +12,7 @@ const cookieOptions = {
   maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
    path: "/",
    httpOnly: true,
-        SameSite: "none",
+        sameSite: "None",
         secure: true,
         domain: "https://lms-frontend-qmln.vercel.app",
 
@@ -99,8 +99,7 @@ export const registerUser = asyncHandler(async (req, res, next) => {
   user.password = undefined;
 
   // Setting the token in the cookie with name token along with cookieOptions
-   const hello = res.cookie('token', token, cookieOptions);
-   console.log("hello",hello);
+  res.cookie('token', token, cookieOptions);
 
   // If all good send the response to the frontend
   res.status(201).json({
@@ -159,13 +158,9 @@ export const loginUser = asyncHandler(async (req, res, next) => {
 export const logoutUser = asyncHandler(async (_req, res, _next) => {
   // Setting the cookie value to null
   res.cookie('token', null, {
-    maxAge:0, // 7 days
-   path: "/",
-   httpOnly: true,
-        sameSite: "none",
-        secure: true,
-        domain: "https://lms-frontend-qmln.vercel.app",
-
+    secure: process.env.NODE_ENV === 'production' ? true : false,
+    maxAge: 0,
+    httpOnly: true,
   });
 
   // Sending the response
