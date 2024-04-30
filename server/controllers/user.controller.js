@@ -158,9 +158,13 @@ export const loginUser = asyncHandler(async (req, res, next) => {
 export const logoutUser = asyncHandler(async (_req, res, _next) => {
   // Setting the cookie value to null
   res.cookie('token', null, {
-    secure: process.env.NODE_ENV === 'production' ? true : false,
-    maxAge: 0,
-    httpOnly: true,
+    maxAge:0, // 7 days
+   path: "/",
+   httpOnly: true,
+        sameSite: "none",
+        secure: true,
+        domain: "https://lms-frontend-qmln.vercel.app",
+
   });
 
   // Sending the response
