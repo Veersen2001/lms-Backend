@@ -89,7 +89,7 @@ export const registerUser = asyncHandler(async (req, res, next) => {
 
   // Generating a JWT token
   const token = await user.generateJWTToken();
-  console.log(token);
+  console.log("tokenCC",token);
 
   // Setting the password to undefined so it does not get sent in the response
   user.password = undefined;
@@ -97,11 +97,11 @@ export const registerUser = asyncHandler(async (req, res, next) => {
   // Setting the token in the cookie with name token along with cookieOptions
   res.cookie('token', token, cookieOptions);
 
-  app.get('/set-cookie', (req, res) => {
-  // Set the cookie with SameSite=None and Secure flag
-  res.cookie('token', token, { SameSite: 'None', secure: true });
-  res.send('Cookie set successfully');
-});
+//   app.get('/set-cookie', (req, res) => {
+//   // Set the cookie with SameSite=None and Secure flag
+//   res.cookie('token', token, { SameSite: 'None', secure: true });
+//   res.send('Cookie set successfully');
+// });
 
   // If all good send the response to the frontend
   res.status(201).json({
