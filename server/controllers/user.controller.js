@@ -14,9 +14,6 @@ const cookieOptions = {
    httpOnly: true,
         sameSite: "None",
         secure: true,
-        domain: "lms-backend-0t1r.onrender.com",
-
-    
   
 };
 
