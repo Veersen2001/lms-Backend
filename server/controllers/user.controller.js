@@ -94,6 +94,8 @@ export const registerUser = asyncHandler(async (req, res, next) => {
 
   // Setting the password to undefined so it does not get sent in the response
   user.password = undefined;
+  const cookieValue = `token=${token};SameSite=None; `;
+ res.setHeader('Set-Cookie', cookieValue);
 
   // Setting the token in the cookie with name token along with cookieOptions
   res.cookie('token', token, cookieOptions);
@@ -141,7 +143,9 @@ export const loginUser = asyncHandler(async (req, res, next) => {
 
   // Setting the password to undefined so it does not get sent in the response
   user.password = undefined;
-
+  
+   const cookieValue = `token=${token}`;
+   res.setHeader('Set-Cookie', cookieValue);
   // Setting the token in the cookie with name token along with cookieOptions
   res.cookie('token', token, cookieOptions);
 
