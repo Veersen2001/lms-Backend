@@ -14,12 +14,13 @@ app.use(express.urlencoded({ extended: true }));
 // Third-Party
 app.use(
   cors({
-    origin:'https://lms-frontend-qmln.vercel.app', //5000
+    origin:['https://lms-frontend-qmln.vercel.app'], //5000
     credentials: true,
   })
 )
 app.use(morgan('dev'));
 app.use(cookieParser());
+
 
 // Server Status Check Route
 app.get('/ping', (_req, res) => {

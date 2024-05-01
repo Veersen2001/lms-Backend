@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "server.js",
   "type": "module",
-   "proxy":"https://lms-frontend-qmln.vercel.app",
+
   "scripts": {
     "start": "node server.js",
     "dev": "nodemon server.js",
