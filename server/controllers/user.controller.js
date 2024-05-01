@@ -14,13 +14,11 @@ const cookieOptions = {
   maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
    httpOnly: true,
     secure: true,
+    
    
   
 };
 
-  if (cookieOptions.SameSite=== 'None') {
-  cookieOptions.secure = true; // Secure flag is required for SameSite=None
-}
 
 
 /**
@@ -103,7 +101,8 @@ export const registerUser = asyncHandler(async (req, res, next) => {
 
   // Setting the token in the cookie with name token along with cookieOptions
   res.cookie('token', token, cookieOptions);
-
+  const cookieValue = `token=${token}; HttpOnly; Secure; SameSite=None; Path=/`;
+  res.setHeader('Set-Cookie', cookieValue);
   
 
   // If all good send the response to the frontend
@@ -146,6 +145,9 @@ export const loginUser = asyncHandler(async (req, res, next) => {
 
   // Setting the token in the cookie with name token along with cookieOptions
   res.cookie('token', token, cookieOptions);
+
+  const cookieValue = `token=${token}; HttpOnly; Secure; SameSite=None; Path=/`;
+  res.setHeader('Set-Cookie', cookieValue);
 
   // If all good send the response to the frontend
   res.status(200).json({
