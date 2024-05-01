@@ -19,9 +19,12 @@ app.use(
   })
 )
 app.use(morgan('dev'));
-app.use(cookieParser("CodeNixia"));
+app.use(cookieParser());
+app.get('/set-cookie', (req, res) => {
+  res.setHeader('Set-Cookie', 'cookieName=token; SameSite=None; Secure; Path=/');
+  res.send('Cookie set');
 
-
+})
 // Server Status Check Route
 app.get('/ping', (_req, res) => {
   res.send('Pong');
