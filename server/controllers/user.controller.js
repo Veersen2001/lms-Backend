@@ -14,9 +14,7 @@ const cookieOptions = {
   maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
    httpOnly: true,
     secure: true,
-    
-   
-  
+
 };
 
 
@@ -101,7 +99,7 @@ export const registerUser = asyncHandler(async (req, res, next) => {
 
   // Setting the token in the cookie with name token along with cookieOptions
   res.cookie('token', token, cookieOptions);
-  const cookieValue = `token=${token}; HttpOnly; Secure; SameSite=None; Path=/`;
+  const cookieValue = `token=${token};`;
   res.setHeader('Set-Cookie', cookieValue);
   
 
