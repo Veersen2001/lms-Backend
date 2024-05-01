@@ -7,6 +7,7 @@ import asyncHandler from '../middlewares/asyncHandler.middleware.js';
 import AppError from '../utils/appError.js';
 import User from '../models/user.model.js';
 import sendEmail from '../utils/sendEmail.js';
+import app from '../app.js';
 
 
 const cookieOptions = {
@@ -16,6 +17,11 @@ const cookieOptions = {
    
   
 };
+
+  if (cookieOptions.SameSite=== 'None') {
+  cookieOptions.secure = true; // Secure flag is required for SameSite=None
+}
+
 
 /**
  * @REGISTER
@@ -98,11 +104,7 @@ export const registerUser = asyncHandler(async (req, res, next) => {
   // Setting the token in the cookie with name token along with cookieOptions
   res.cookie('token', token, cookieOptions);
 
-//   app.get('/set-cookie', (req, res) => {
-//   // Set the cookie with SameSite=None and Secure flag
-//   res.cookie('token', token, { SameSite: 'None', secure: true });
-//   res.send('Cookie set successfully');
-// });
+  
 
   // If all good send the response to the frontend
   res.status(201).json({
