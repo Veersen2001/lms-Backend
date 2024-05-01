@@ -7,13 +7,13 @@ import asyncHandler from '../middlewares/asyncHandler.middleware.js';
 import AppError from '../utils/appError.js';
 import User from '../models/user.model.js';
 import sendEmail from '../utils/sendEmail.js';
-import app from '../app.js';
+
 
 const cookieOptions = {
   maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
    httpOnly: true,
     secure: true,
-    Credential:true
+   
   
 };
 
