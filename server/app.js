@@ -19,7 +19,7 @@ app.use(
   })
 )
 app.use(morgan('dev'));
-app.use(cookieParser());
+app.use(cookieParser("CodeNixia"));
 
 
 // Server Status Check Route
