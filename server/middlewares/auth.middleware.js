@@ -1,11 +1,11 @@
 import jwt from "jsonwebtoken";
-
+import User from '../models/user.model.js';
 import AppError from "../utils/appError.js";
 import asyncHandler from "./asyncHandler.middleware.js";
 
 export const isLoggedIn = asyncHandler(async (req, _res, next) => {
   // extracting token from the cookies
-  
+  const user = await User.findOne({ email }).select('+password');
   // const token  = req.cookies;
   const token = await user.generateJWTToken();
   console.log("Token"+token);
