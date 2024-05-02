@@ -5,7 +5,7 @@ import asyncHandler from "./asyncHandler.middleware.js";
 
 export const isLoggedIn = asyncHandler(async (req, _res, next) => {
   
-    const token = 'JhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2MmUzMzZhMDBlZmQ3ODcwMzYyZjk2OSIsInJvbGUiOiJVU0VSIiwic3Vic2NyaXB0aW9uIjp7ImlkIjoic3ViX080bGxoWFZHV2V3V1JrIiwic3RhdHVzIjoiYWN0aXZlIn0sImlhdCI6MTcxNDY0MzkwOCwiZXhwIjoxNzE1MjQ4NzA4fQ.eDF6Uf-UTNCwm-0H6kN3LRCgzFGCXiN3CNVuUPgS7xY'
+   const token = req.cookie()
   //  const user = await User.findOne({ email })
   //  const token = await user.generateJWTToken();
  
