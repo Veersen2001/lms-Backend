@@ -5,8 +5,11 @@ import asyncHandler from "./asyncHandler.middleware.js";
 
 export const isLoggedIn = asyncHandler(async (req, _res, next) => {
   
-   const token = req.cookie
-  console.log("Token"+token);
+  //  const token = req.cookie
+   const user = await User.findOne({ email })
+   const token = await user.generateJWTToken();
+ 
+  console.log("Token"+user);
 
   // If no token send unauthorized message
   if (!token) {
