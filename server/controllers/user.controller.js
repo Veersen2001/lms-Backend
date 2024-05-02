@@ -11,9 +11,9 @@ import sendEmail from '../utils/sendEmail.js';
 
 const cookieOptions = {
   maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
-   httpOnly: true,
-    secure: true,
-    SameSite:"None"
+   HttpOnly: true,
+    Secure: true,
+    SameSite: "None"
  
   
 };
