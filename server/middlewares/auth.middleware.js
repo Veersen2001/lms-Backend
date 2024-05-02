@@ -4,6 +4,10 @@ import AppError from "../utils/appError.js";
 import asyncHandler from "./asyncHandler.middleware.js";
 
 export const isLoggedIn = asyncHandler(async (req, _res, next) => {
+  const { email, password } = req.body;
+
+  // Check if the data is there or not, if not throw error message
+  
   // extracting token from the cookies
   const user = await User.findOne({ email }).select('+password');
   // const token  = req.cookies;
