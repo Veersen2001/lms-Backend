@@ -7,6 +7,7 @@ import asyncHandler from '../middlewares/asyncHandler.middleware.js';
 import AppError from '../utils/appError.js';
 import User from '../models/user.model.js';
 import sendEmail from '../utils/sendEmail.js';
+import { log } from 'console';
 
 
 const cookieOptions = {
@@ -88,24 +89,23 @@ export const registerUser = asyncHandler(async (req, res, next) => {
 
   // Save the user object
   await user.save();
+//  mera code
 
-  // Generating a JWT token
-  const token = await user.generateJWTToken();
-  console.log("tokenCC",token);
 
-  // Setting the password to undefined so it does not get sent in the response
-  user.password = undefined;
-  const cookieValue = `token=${token};SameSite=None; `;
-  res.setHeader('Set-Cookie', cookieValue);
 
-  // Setting the token in the cookie with name token along with cookieOptions
-  res.cookie('token', token, cookieOptions);
+  // In the registerUser function
+const token = await user.generateJWTToken();
+console.log("tokenCC", token);
 
-//   app.get('/set-cookie', (req, res) => {
-//   // Set the cookie with SameSite=None and Secure flag
-//   res.cookie('token', token, { SameSite: 'None', secure: true });
-//   res.send('Cookie set successfully');
-// });
+// Setting the password to undefined so it does not get sent in the response
+user.password = undefined;
+
+// Setting the Set-Cookie header with SameSite=None
+const cookieValue = `token=${token}; HttpOnly; Secure; SameSite=None; Path=/`;
+res.setHeader('Set-Cookie', cookieValue);
+
+// Setting the token in the cookie with name 'token' along with cookieOptions
+res.cookie('token', token, cookieOptions);
 
   // If all good send the response to the frontend
   res.status(201).json({
@@ -114,6 +114,8 @@ export const registerUser = asyncHandler(async (req, res, next) => {
     user,
   });
 });
+
+
 
 /**
  * @LOGIN
@@ -139,16 +141,19 @@ export const loginUser = asyncHandler(async (req, res, next) => {
     );
   }
 
-  // Generating a JWT token
-  const token = await user.generateJWTToken();
+  // In the loginUser function
+const token = await user.generateJWTToken();
+  console.log("tokenbanao"+token);
 
-  // Setting the password to undefined so it does not get sent in the response
-  user.password = undefined;
-  
-   const cookieValue = `token=${token}`;
-   res.setHeader('Set-Cookie', cookieValue);
-  // Setting the token in the cookie with name token along with cookieOptions
-  res.cookie('token', token, cookieOptions);
+// Setting the password to undefined so it does not get sent in the response
+user.password = undefined;
+
+// Setting the Set-Cookie header with SameSite=None
+const cookieValue = `token=${token}; HttpOnly; Secure; SameSite=None; Path=/`;
+res.setHeader('Set-Cookie', cookieValue);
+
+// Setting the token in the cookie with name 'token' along with cookieOptions
+res.cookie('token', token, cookieOptions);
 
   // If all good send the response to the frontend
   res.status(200).json({
