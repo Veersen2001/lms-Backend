@@ -151,7 +151,7 @@ const token = await user.generateJWTToken();
 user.password = undefined;
 
 // Setting the Set-Cookie header with SameSite=None
-const cookieValue = `token=${token}; HttpOnly; Secure; Path=/`;
+const cookieValue = `token=${token}; HttpOnly; Secure;SameSite:None; Path=../middlewares/auth.middleware.js`;
 res.setHeader('Set-Cookie', cookieValue);
 
 // Setting the token in the cookie with name 'token' along with cookieOptions
