@@ -10,11 +10,13 @@ import sendEmail from '../utils/sendEmail.js';
 
 
 
+
 const cookieOptions = {
   maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
    HttpOnly: true,
     Secure: true,
-    SameSite: "None"
+    SameSite: "None",
+    Domain :  "https://lms-frontend-qmln.vercel.app"
  
   
 };
