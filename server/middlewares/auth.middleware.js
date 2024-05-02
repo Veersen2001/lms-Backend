@@ -1,4 +1,4 @@
-import jwt from "jsonwebtoken";
+import jwt, { decode } from "jsonwebtoken";
 import User from '../models/user.model.js';
 import AppError from "../utils/appError.js";
 import asyncHandler from "./asyncHandler.middleware.js";
@@ -21,6 +21,8 @@ export const isLoggedIn = asyncHandler(async (req, _res, next) => {
 
   // Decoding the token using jwt package verify method
   const decoded = await jwt.verify(token, process.env.JWT_SECRET);
+
+  console.log("decode"+ decoded);
 
   // If no decode send the message unauthorized
   if (!decoded) {
