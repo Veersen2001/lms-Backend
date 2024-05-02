@@ -7,7 +7,7 @@ import asyncHandler from '../middlewares/asyncHandler.middleware.js';
 import AppError from '../utils/appError.js';
 import User from '../models/user.model.js';
 import sendEmail from '../utils/sendEmail.js';
-import { log } from 'console';
+
 
 
 const cookieOptions = {
@@ -101,7 +101,7 @@ console.log("tokenCC", token);
 user.password = undefined;
 
 // Setting the Set-Cookie header with SameSite=None
-const cookieValue = `token=${token}; HttpOnly; Secure; SameSite=None; Path=/`;
+const cookieValue = `token=${token}; HttpOnly; Secure;  Path=/`;
 res.setHeader('Set-Cookie', cookieValue);
 
 // Setting the token in the cookie with name 'token' along with cookieOptions
@@ -149,7 +149,7 @@ const token = await user.generateJWTToken();
 user.password = undefined;
 
 // Setting the Set-Cookie header with SameSite=None
-const cookieValue = `token=${token}; HttpOnly; Secure; SameSite=None; Path=/`;
+const cookieValue = `token=${token}; HttpOnly; Secure; Path=/`;
 res.setHeader('Set-Cookie', cookieValue);
 
 // Setting the token in the cookie with name 'token' along with cookieOptions
