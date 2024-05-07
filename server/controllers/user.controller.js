@@ -146,12 +146,12 @@ const token = await user.generateJWTToken();
 user.password = undefined;
 
 // Setting the Set-Cookie header with SameSite=None
-const cookieValue = `token=${token}; HttpOnly; Secure;SameSite:None; Path=/api/v1`;
-res.setHeader('Set-Cookie', cookieValue);
+// const cookieValue = `token=${token}; HttpOnly; Secure;SameSite:None; Path=/`;
+// res.setHeader('Set-Cookie', cookieValue);
 
 // Setting the token in the cookie with name 'token' along with cookieOptions
 res.cookie('token', token, cookieOptions);
-res.send(token);
+res.send();
  
   // If all good send the response to the frontend
   res.status(200).json({
