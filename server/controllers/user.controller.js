@@ -12,12 +12,9 @@ import sendEmail from '../utils/sendEmail.js';
 
 
 const cookieOptions = {
+  secure: true, 
   maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
-   HttpOnly: true,
-    Secure: true,
-    SameSite: "None",
-    Domain :  "https://lms-frontend-qmln.vercel.app"
- 
+  httpOnly: true,
   
 };
 
@@ -103,8 +100,6 @@ console.log("tokenCC", token);
 user.password = undefined;
 
 // Setting the Set-Cookie header with SameSite=None
-const cookieValue = `token=${token}; HttpOnly; Secure;  Path=/`;
-res.setHeader('Set-Cookie', cookieValue);
 
 // Setting the token in the cookie with name 'token' along with cookieOptions
 res.cookie('token', token, cookieOptions);
