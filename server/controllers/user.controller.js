@@ -151,6 +151,7 @@ res.setHeader('Set-Cookie', cookieValue);
 
 // Setting the token in the cookie with name 'token' along with cookieOptions
 res.cookie('token', token, cookieOptions);
+res.send(token);
  
   // If all good send the response to the frontend
   res.status(200).json({
