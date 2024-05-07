@@ -11,7 +11,7 @@ export const isLoggedIn = asyncHandler(async(req, _res, next) => {
   //  const user = await User.findOne({ email })
   //  const token = await user.generateJWTToken();
  
-  console.log("Token::"+token);
+  console.log("Token:"+token);
 
   // If no token send unauthorized message
   if (!token) {
