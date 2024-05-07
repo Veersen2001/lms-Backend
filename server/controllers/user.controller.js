@@ -140,7 +140,7 @@ export const loginUser = asyncHandler(async (req, res, next) => {
 
   // In the loginUser function
 const token = await user.generateJWTToken();
-  console.log("tokenbanao"+token);
+  console.log("token Login :"+token);
 
 // Setting the password to undefined so it does not get sent in the response
 user.password = undefined;
