@@ -7,7 +7,8 @@ import cookieParser from "cookie-parser";
 export const isLoggedIn = asyncHandler(async(req, _res, next) => {
   
    const {token} = req.cookies;
-    console.log('Cookies: ', req.cookies)
+    console.log('Cookies:: ', req.cookies)
+    _res.send(); 
   //  const user = await User.findOne({ email })
   //  const token = await user.generateJWTToken();
  
