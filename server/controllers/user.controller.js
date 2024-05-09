@@ -11,10 +11,12 @@ import sendEmail from '../utils/sendEmail.js';
 
 
 
+
 const cookieOptions = {
-  secure: true, 
-  maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
   httpOnly: true,
+    maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
+    secure: true, 
+    sameSite: 'none'
   
 };
 
@@ -150,14 +152,19 @@ user.password = undefined;
 // res.setHeader('Set-Cookie', cookieValue);
 
 // Setting the token in the cookie with name 'token' along with cookieOptions
-res.cookie('token', token, cookieOptions);
-
- 
+// res.cookie('token', token, cookieOptions);
+    res.cookie('token', token, {
+    secure: true,
+    maxAge:7 * 24 * 60 * 60 * 1000 ,
+    httpOnly: true,
+  });
+   console.log("cookies==>",req.cookies);
   // If all good send the response to the frontend
   res.status(200).json({
     success: true,
     message: 'User logged in successfully',
     user,
+   
   });
 });
 
