@@ -12,13 +12,7 @@ config();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 // Third-Party
-app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', 'https://lms-frontend-qmln.vercel.app');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-  res.setHeader('Access-Control-Allow-Credentials', 'true');
-  next();
-});
+
 
 app.use(cookieParser());
 
