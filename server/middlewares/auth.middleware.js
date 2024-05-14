@@ -7,13 +7,11 @@ import asyncHandler from "./asyncHandler.middleware.js";
 export const isLoggedIn = asyncHandler(async(req, _res, next) => {
   
    const {token} = req.cookies;
-    console.log('Cookies= ',req.cookies )
+    // console.log('Cookies= ',req.cookies )
     
   
   //  const user = await User.findOne({ email })
   //  const token = await user.generateJWTToken();
- 
-  console.log("Token:"+token);
 
   // If no token send unauthorized message
   if (!token) {
@@ -23,7 +21,7 @@ export const isLoggedIn = asyncHandler(async(req, _res, next) => {
   // Decoding the token using jwt package verify method
   const decoded = await jwt.verify(token, process.env.JWT_SECRET);
 
-  console.log("decode:"+ decoded);
+
 
   // If no decode send the message unauthorized
   if (!decoded) {

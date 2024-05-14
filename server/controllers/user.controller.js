@@ -8,10 +8,6 @@ import AppError from '../utils/appError.js';
 import User from '../models/user.model.js';
 import sendEmail from '../utils/sendEmail.js';
 
-
-
-
-
 const cookieOptions = {
   httpOnly: true,
     maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
@@ -96,7 +92,7 @@ export const registerUser = asyncHandler(async (req, res, next) => {
 
   // In the registerUser function
 const token = await user.generateJWTToken();
-console.log("tokenCC", token);
+
 
 // Setting the password to undefined so it does not get sent in the response
 user.password = undefined;
@@ -147,18 +143,9 @@ const token = await user.generateJWTToken();
 // Setting the password to undefined so it does not get sent in the response
 user.password = undefined;
 
-// Setting the Set-Cookie header with SameSite=None
-// const cookieValue = `token=${token}; HttpOnly; Secure;SameSite:None; Path=/`;
-// res.setHeader('Set-Cookie', cookieValue);
 
-// Setting the token in the cookie with name 'token' along with cookieOptions
-// res.cookie('token', token, cookieOptions);
-    res.cookie('token', token, {
-    secure: true,
-    maxAge:7 * 24 * 60 * 60 * 1000 ,
-    httpOnly: true,
-  });
-   console.log("cookies==>",req.cookies);
+   res.cookie('token', token, cookieOptions);
+   
   // If all good send the response to the frontend
   res.status(200).json({
     success: true,

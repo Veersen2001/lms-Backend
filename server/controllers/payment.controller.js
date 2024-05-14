@@ -17,6 +17,7 @@ export const buySubscription = asyncHandler(async (req, res, next) => {
 
   // Finding the user based on the ID
   const user = await User.findById(id);
+  console.log("user"+user);
 
   if (!user) {
     return next(new AppError('Unauthorized, please login'));
@@ -33,7 +34,7 @@ export const buySubscription = asyncHandler(async (req, res, next) => {
     customer_notify: 1, // 1 means razorpay will handle notifying the customer, 0 means we will not notify the customer
     total_count: 12, // 12 means it will charge every month for a 1-year sub.
   });
-
+    console.log("sub:",subscription);
   // Adding the ID and the status to the user account
   user.subscription.id = subscription.id;
   user.subscription.status = subscription.status;
@@ -58,6 +59,7 @@ export const verifySubscription = asyncHandler(async (req, res, next) => {
   const { razorpay_payment_id, razorpay_subscription_id, razorpay_signature } =
     req.body;
 
+   
   // Finding the user
   const user = await User.findById(id);
 
